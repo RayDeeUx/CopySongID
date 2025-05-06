@@ -18,12 +18,12 @@ using namespace geode::prelude;
 #define COPY_ID_USING(memory, type)\
 	if (!Mod::get()->getSettingValue<bool>("enabled")) return;\
 	if (memory + 1 < 2) return Notification::create(fmt::format(type" ID {} is not a valid ID, so it was not copied.", memory), NotificationIcon::Error, 2.f)->show();\
-	(void) geode::utils::clipboard::write(fmt::format("{} ", memory));\
+	(void) geode::utils::clipboard::write(fmt::format("{}", memory));\
 	return Notification::create(fmt::format(type" ID {} was copied.", memory))->show();
 
 #define SANITY_CHECK_AND_GO_TBH(memory, type)\
 	if (!Mod::get()->getSettingValue<bool>("enabled")) return;\
-	const auto& ids = static_cast<std::vector<int>&>(memory);\
+	const auto ids = static_cast<std::vector<int>>(memory);\
 	if (!sender || sender->getTag() != 5062025 || ids.empty()) return;\
 	MyAudioAssetsBrowser::composeStringForClipboard(ids, type);
 
