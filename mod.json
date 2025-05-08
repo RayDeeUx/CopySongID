@@ -10,7 +10,7 @@
 	"name": "CopySongID",
 	"version": "v1.4.0",
 	"developer": "RayDeeUx",
-	"description": "Copies the song ID. Might also copy SFX IDs too.",
+	"description": "Copies song IDs. Also copies SFX IDs.",
 	"repository": "https://github.com/RayDeeUx/CopySongID",
 	"settings": {
 		"enabled": {
@@ -20,13 +20,12 @@
 			"default": true
 		}
 	},
-	"resources": {
-		"sprites": [
-			"resources/*.png"
-		]
-	},
 	"incompatibilities": {
 		"johnny_cena.copy_song_id": {
+			"version": "*",
+			"importance": "superseded"
+		},
+		"elnexreal.copy_song_id": {
 			"version": "*",
 			"importance": "superseded"
 		}
