@@ -21,11 +21,18 @@ using namespace geode::prelude;
 	(void) geode::utils::clipboard::write(fmt::format("{}", memory));\
 	return Notification::create(fmt::format(type" ID {} was copied.", memory))->show();
 
+#ifdef GEODE_IS_ANDROID
+#define SANITY_CHECK_AND_GO_TBH(memory, type)\
+	if (!Mod::get()->getSettingValue<bool>("enabled")) return;\
+	if (!sender || sender->getTag() != 5062025 || memory.empty()) return;\
+	MyAudioAssetsBrowser::composeStringForClipboard(memory, type);
+#else
 #define SANITY_CHECK_AND_GO_TBH(memory, type)\
 	if (!Mod::get()->getSettingValue<bool>("enabled")) return;\
 	const auto ids = static_cast<std::vector<int>>(memory);\
 	if (!sender || sender->getTag() != 5062025 || ids.empty()) return;\
 	MyAudioAssetsBrowser::composeStringForClipboard(ids, type);
+#endif
 
 class $modify(MyCustomSongWidget, CustomSongWidget) {
 	static void onModify(auto& self) {
@@ -117,7 +124,11 @@ class $modify(MyAudioAssetsBrowser, AudioAssetsBrowser) {
 	void onCopyAllSFXIDs(CCObject* sender) {
 		SANITY_CHECK_AND_GO_TBH(m_sfxIds, "SFX")
 	}
-	static void composeStringForClipboard(const std::vector<int>& ids, const std::string& type) {
+	#ifdef GEODE_IS_ANDROID
+    static void composeStringForClipboard(const gd::vector<int>& ids, const std::string& type) {
+    #else
+    static void composeStringForClipboard(const std::vector<int>& ids, const std::string& type) {
+    #endif
 		if (!Mod::get()->getSettingValue<bool>("enabled")) return;
 		std::string stringToReturn = fmt::format("{} IDs: ", type);
 		for (const int id : ids) {
