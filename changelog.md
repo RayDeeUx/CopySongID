@@ -1,4 +1,6 @@
 # CopySongID Changelog
+## v1.0.2
+- So the Geode CLI decided to be a big fat meanie today. ***__AGAIN.__***
 ## v1.0.1
 - So the Geode CLI decided to be a big fat meanie today.
 ## v1.0.0
