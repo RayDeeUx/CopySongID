@@ -1,4 +1,6 @@
 # CopySongID Changelog
+## v1.0.3
+- Port to GD 2.2081.
 ## v1.0.2
 - So the Geode CLI decided to be a big fat meanie today. ***__AGAIN.__***
 ## v1.0.1

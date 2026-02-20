@@ -1,14 +1,14 @@
 {
-	"geode": "4.4.0",
+	"geode": "5.0.0-beta.3",
 	"gd": {
-		"win": "2.2074",
-		"mac": "2.2074",
-		"ios": "2.2074",
-		"android": "2.2074"
+		"win": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081",
+		"android": "2.2081"
 	},
 	"id": "raydeeux.copysongid",
 	"name": "CopySongID",
-	"version": "v1.0.2",
+	"version": "v1.0.3",
 	"developer": "RayDeeUx",
 	"description": "Copies song IDs. Also copies SFX IDs.",
 	"repository": "https://github.com/RayDeeUx/CopySongID",
@@ -21,14 +21,8 @@
 		}
 	},
 	"incompatibilities": {
-		"johnny_cena.copy_song_id": {
-			"version": ">=1.0.0",
-			"importance": "superseded"
-		},
-		"elnexreal.copy_song_id": {
-			"version": ">=1.0.0",
-			"importance": "superseded"
-		}
+		"johnny_cena.copy_song_id": ">=1.0.0",
+		"elnexreal.copy_song_id": ">=1.0.0"
 	},
 	"issues": {
 		"url": "https://discord.com/channels/911701438269386882/1205523212444639292",
