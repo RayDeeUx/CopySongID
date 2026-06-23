@@ -4,6 +4,11 @@
 
 using namespace geode::prelude;
 
+#define MOVE_FUCKING_STUPID_NOSTALGIA_BAIT_BUTTON\
+	fuckingStupidNostalgiaBaitButton->setPosition(this->m_moreBtn->getPositionX() + 50.f, this->m_moreBtn->getPositionY());\
+	fuckingStupidNostalgiaBaitButton->setEnabled(this->m_moreBtn->isVisible());\
+	fuckingStupidNostalgiaBaitButton->setVisible(this->m_moreBtn->isVisible());
+
 #define CREATE_SPRITE_WITH_CONDITION(condition)\
 	CCLabelBMFont* label = CCLabelBMFont::create("Copy", "bigFont.fnt");\
 	CCSprite* sprite = CircleButtonSprite::create(label, CircleBaseColor::Pink);\
@@ -46,6 +51,16 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 
 		if (m_downloadBtn == nullptr || m_customSongID + 1 < 2 || m_isRobtopSong) return true;
 
+		if (Mod::get()->getSettingValue<bool>("stupidNostalgiaBait") && this->m_moreBtn && !isMusicLibrary) {
+			ButtonSprite* fuckingStupidNostalgiaBait = ButtonSprite::create("Copy", 220, 0, .6f, false, "bigFont.fnt", "GJ_button_04.png", 25.f);
+			fuckingStupidNostalgiaBait->setScale(.7f);
+			fuckingStupidNostalgiaBait->setID("copy-song-id-worthless-nostalgia-bait-edition"_spr);
+			CCMenuItemSpriteExtra* fuckingStupidNostalgiaBaitButton = CCMenuItemSpriteExtra::create(fuckingStupidNostalgiaBait, this, menu_selector(MyCustomSongWidget::onCopySongID));
+			this->m_buttonMenu->addChild(fuckingStupidNostalgiaBaitButton);
+			MOVE_FUCKING_STUPID_NOSTALGIA_BAIT_BUTTON
+			return true;
+		}
+
 		CREATE_SPRITE_WITH_CONDITION(m_isMusicLibrary ? 0.375f : 0.5f)
 		CREATE_AND_ADD_BUTTON("song", menu_selector(MyCustomSongWidget::onCopySongID))
 		copyButton->setPositionX(m_downloadBtn->getPositionX() + (m_isMusicLibrary ? 21.f : 21.5f));
@@ -58,8 +73,15 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		CustomSongWidget::updateWithMultiAssets(p0, p1, p2);
 		if (!Mod::get()->getSettingValue<bool>("enabled")) return;
 		if (m_infoBtn == nullptr || m_sfx.empty() && m_songs.empty() || m_isMusicLibrary || m_playbackBtn->isVisible()) return;
-		const float originalXPos = m_infoBtn->getPositionX();
-		m_infoBtn->setPositionX(originalXPos - 5.f);
+		m_infoBtn->setPositionX(m_infoBtn->getPositionX() - 5.f);
+		if (Mod::get()->getSettingValue<bool>("stupidNostalgiaBait") && this->m_artistLabel && this->m_moreBtn && this->m_buttonMenu && this->m_buttonMenu->getChildByID("copy-song-id-worthless-nostalgia-bait-edition"_spr) && !m_isMusicLibrary) {
+			// code begrudgingly reused from poloak because some people just cant learn to move the fuck on from absolute's dogshit ui design hmmph
+			this->m_artistLabel->setScale(1.f);
+			this->m_artistLabel->limitLabelWidth(120.f, .75f, 0.f);
+			this->m_moreBtn->setPositionX(this->m_buttonMenu->convertToNodeSpace({this->m_artistLabel->getScaledContentSize().width + 175.f, 0.f}).x);
+			CCMenuItemSpriteExtra* fuckingStupidNostalgiaBaitButton = static_cast<CCMenuItemSpriteExtra*>(this->m_buttonMenu->getChildByID("copy-song-id-worthless-nostalgia-bait-edition"_spr));
+			MOVE_FUCKING_STUPID_NOSTALGIA_BAIT_BUTTON
+		}
 	}
 
 	void onCopySongID(CCObject* sender) {
