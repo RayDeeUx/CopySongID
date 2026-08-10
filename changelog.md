@@ -1,6 +1,6 @@
 # CopySongID Changelog
-## v1.0.4
-- World's most pointless nostalgia-baiting update.
+## v1.0.4 and v1.0.5
+- World's most pointless nostalgia-baiting updates.
 ## v1.0.3
 - Port to GD 2.2081.
 ## v1.0.2
