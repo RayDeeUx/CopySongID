@@ -8,7 +8,7 @@
 	},
 	"id": "raydeeux.copysongid",
 	"name": "CopySongID",
-	"version": "v1.0.5",
+	"version": "v1.0.6",
 	"developer": "RayDeeUx",
 	"description": "Copies song IDs. Also copies SFX IDs.",
 	"repository": "https://codeberg.org/RayDeeUx/CopySongID",

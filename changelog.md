@@ -1,4 +1,6 @@
 # CopySongID Changelog
+## v1.0.6
+- Undo wreckage caused by v1.0.5.
 ## v1.0.4 and v1.0.5
 - World's most pointless nostalgia-baiting updates.
 ## v1.0.3

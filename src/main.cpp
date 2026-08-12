@@ -66,6 +66,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		CREATE_AND_ADD_BUTTON("song", menu_selector(MyCustomSongWidget::onCopySongID))
 		copyButton->setPositionX(m_downloadBtn->getPositionX() + (m_isMusicLibrary ? 21.f : 21.5f));
 		copyButton->setPositionY(m_downloadBtn->getPositionY() + (m_isMusicLibrary ? 21.f : 61.5f));
+		copyButton->setTag(20260810);
 
 		return true;
 	}
