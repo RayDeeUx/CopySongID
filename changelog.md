@@ -1,4 +1,6 @@
 # CopySongID Changelog
+## v1.0.7
+- 2.2091 as a game update was a net negative.
 ## v1.0.6
 - Undo wreckage caused by v1.0.5.
 ## v1.0.4 and v1.0.5
