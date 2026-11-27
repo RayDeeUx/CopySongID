@@ -26,18 +26,10 @@ using namespace geode::prelude;
 	(void) geode::utils::clipboard::write(fmt::format("{}", memory));\
 	return Notification::create(fmt::format(type" ID {} was copied.", memory))->show();
 
-#ifdef GEODE_IS_ANDROID
 #define SANITY_CHECK_AND_GO_TBH(memory, type)\
 	if (!Mod::get()->getSettingValue<bool>("enabled")) return;\
 	if (!sender || sender->getTag() != 5062025 || memory.empty()) return;\
 	MyAudioAssetsBrowser::composeStringForClipboard(memory, type);
-#else
-#define SANITY_CHECK_AND_GO_TBH(memory, type)\
-	if (!Mod::get()->getSettingValue<bool>("enabled")) return;\
-	const auto ids = static_cast<std::vector<int>>(memory);\
-	if (!sender || sender->getTag() != 5062025 || ids.empty()) return;\
-	MyAudioAssetsBrowser::composeStringForClipboard(ids, type);
-#endif
 
 class $modify(MyCustomSongWidget, CustomSongWidget) {
 	static void onModify(auto& self) {
@@ -71,7 +63,7 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 		return true;
 	}
 
-	void updateWithMultiAssets(gd::string p0, gd::string p1, int p2) {
+	void updateWithMultiAssets(std::string p0, std::string p1, int p2) {
 		CustomSongWidget::updateWithMultiAssets(p0, p1, p2);
 		if (!m_infoBtn || (m_sfx.empty() && m_songs.empty()) || m_isMusicLibrary || m_playbackBtn->isVisible() || !Mod::get()->getSettingValue<bool>("enabled")) return;
 		m_infoBtn->setPositionX(m_infoBtn->getPositionX() - 5.f);
@@ -115,7 +107,7 @@ class $modify(MyCustomSFXWidget, CustomSFXWidget) {
 };
 
 class $modify(MyAudioAssetsBrowser, AudioAssetsBrowser) {
-	bool init(gd::vector<int>& songIDs, gd::vector<int>& sfxIDs) {
+	bool init(std::vector<int>& songIDs, std::vector<int>& sfxIDs) {
 		if (!AudioAssetsBrowser::init(songIDs, sfxIDs)) return false;
 
 		if (!Mod::get()->getSettingValue<bool>("enabled") || (songIDs.empty() && sfxIDs.empty()) || !CCScene::get()->getChildByType<LevelInfoLayer>(0) || !m_buttonMenu) return true;
@@ -150,11 +142,7 @@ class $modify(MyAudioAssetsBrowser, AudioAssetsBrowser) {
 	void onCopyAllSFXIDs(CCObject* sender) {
 		SANITY_CHECK_AND_GO_TBH(m_sfxIds, "SFX")
 	}
-	#ifdef GEODE_IS_ANDROID
-	static void composeStringForClipboard(const gd::vector<int>& ids, const std::string& type) {
-	#else
 	static void composeStringForClipboard(const std::vector<int>& ids, const std::string& type) {
-	#endif
 		if (!Mod::get()->getSettingValue<bool>("enabled")) return;
 		std::string stringToReturn = fmt::format("{} IDs: ", type);
 		for (const int id : ids) {
