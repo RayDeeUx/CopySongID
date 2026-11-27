@@ -87,8 +87,8 @@ class $modify(MyCustomSongWidget, CustomSongWidget) {
 };
 
 class $modify(MyCustomSFXWidget, CustomSFXWidget) {
-	bool init(SFXInfoObject* sfxInfo, CustomSFXDelegate* sfxDelegate, bool p2, bool p3, bool p4, bool p5, bool p6) {
-		if (!CustomSFXWidget::init(sfxInfo, sfxDelegate, p2, p3, p4, p5, p6)) return false;
+	bool init(SFXInfoObject* sfxInfo, CustomSFXDelegate* sfxDelegate, bool p2, bool p3, bool p4, bool p5, bool p6, bool fuck, bool you) {
+		if (!CustomSFXWidget::init(sfxInfo, sfxDelegate, p2, p3, p4, p5, p6, fuck, you)) return false;
 
 		if (!Mod::get()->getSettingValue<bool>("enabled")) return true;
 
